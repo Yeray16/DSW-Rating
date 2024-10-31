@@ -1,15 +1,15 @@
 {
-    "name": "dsw/rating",
+    "name": "daw2/dsw-rating",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Dsw\\Rating\\": "src/"
+            "Daw2\\DswRating\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "Andrés Crespo",
-            "email": "acrerosj@canariaseducacion.es"
+            "name": "Yeray Navarro",
+            "email": "yeraynp16@gmail.com"
         }
     ],
     "require": {}

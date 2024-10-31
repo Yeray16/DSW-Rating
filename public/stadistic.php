@@ -4,16 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <?php
-    $fileName = '..\data\2024_10_25_15_15.csv';
-    $content = file_get_contents($fileName);
-    $rates = explode(',', $content);
-    array_pop($rates);
-    // $count =
-    // $total = 
-    // $avg = $total / $count; 
+  <h1>Estadísticas</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Cantidad</th>
+        <th>Media</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+        require_once 'connection.php';
+        $results = $link->query('SELECT date_format(date, "%Y-%c-%d %H:%i") as dateFormat, count(rate) as count, avg(rate) as avg FROM rates GROUP BY dateFormat;');
+        while ($rate = $results->fetch(PDO::FETCH_OBJ)){
+          list($date, $time) = explode(' ',$rate->dateFormat);
+          printf("<tr><td>%s</td><td>%s</td><td>%d</td><td>%f.2</td></tr>",
+          $date, $time, $rate->count, $rate->avg);
+        }
+
+        $link = null;
   ?>
+    </tbody>
+  </table>
 </body>
 </html>
