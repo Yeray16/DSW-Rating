@@ -20,14 +20,13 @@
     <tbody>
       <?php
         require_once 'connection.php';
-        $results = $link->query('SELECT date_format(date, "%Y-%c-%d %H:%i") as dateFormat, count(rate) as count, avg(rate) as avg FROM rates GROUP BY dateFormat;');
-        while ($rate = $results->fetch(PDO::FETCH_OBJ)){
-          list($date, $time) = explode(' ',$rate->dateFormat);
+        $stadistics = $store->getStadistics();
+
+        foreach($stadistics as $stat) {
           printf("<tr><td>%s</td><td>%s</td><td>%d</td><td>%f.2</td></tr>",
-          $date, $time, $rate->count, $rate->avg);
+          $stat['day'], $stat['time'], $stat['count'], $stat['avg']);
         }
 
-        $link = null;
   ?>
     </tbody>
   </table>

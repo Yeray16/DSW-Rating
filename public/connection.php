@@ -1,10 +1,6 @@
 <?php
 
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$db = 'ratingdb';
+require '../vendor/autoload.php';
 
-$dsn = "mysql:host=$host;dbname=$db";
-
-$link = new PDO($dsn, $user, $password);
+$store = new Daw2\DswRating\StoreDB('localhost', 'root', '', 'ratingdb');
+// $store = new Daw2\DswRating\StoreFile();
